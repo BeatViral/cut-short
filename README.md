@@ -40,3 +40,13 @@ SVG is the resolution-independent master for websites, large posters and print l
 ## Rebuild
 
 Install Node.js dependencies with `npm install`, then run `npm run build`. The `CUT_SHORT_SHARP` environment variable can point to an existing Sharp installation. `scripts/package-brand.py` creates ICO files, verifies PNG integrity and bundles the assets with this guide into `cut-short-logo-suite.zip` (requires Pillow).
+
+## Landing page
+
+The responsive festival landing page is in `dist/`. It uses the approved logo files and brand colours, with mobile layouts, keyboard focus styles, working section navigation and a motion pause control. Reduced-motion preferences automatically disable animation.
+
+Serve `dist` with any static web server. For example: `python -m http.server 4173 --directory dist`. There is no website build step and no third-party network dependency. For deployment, use `dist` as the publish directory. Pushing this repository does not itself configure hosting.
+
+The page is currently a coming-soon launch: confirmed festival dates, location and the submission destination have not been provided. Edit `dist/index.html` when those details are ready. No email addresses are collected and no submission form is implied to work.
+
+The browser check in `scripts/check-landing.cjs` uses Playwright and installed Chrome against a running local server on port 4173. Install Playwright separately or set `CUT_SHORT_PLAYWRIGHT` to an existing module path. Screenshots are saved in ignored `.qa/`. Checks cover desktop/mobile layout, asset loading, navigation, motion controls and reduced motion.
