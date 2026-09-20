@@ -1,0 +1,7 @@
+{
+  "name": "cut-short-brand",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {"build": "node scripts/build-brand.cjs"},
+  "devDependencies": {"sharp": "^0.34.5"}
+}
