@@ -52,3 +52,4 @@ The landing page celebrates ad films with a Sydney screening. Venue, screening d
 The browser check in `scripts/check-landing.cjs` uses Playwright and installed Chrome against a running local server on port 4173. Install Playwright separately or set `CUT_SHORT_PLAYWRIGHT` to an existing module path. Screenshots are saved in ignored `.qa/`. Checks cover desktop/mobile layout, asset loading, navigation, motion controls and reduced motion.
 
 The check in scripts/check-submission.cjs verifies required rights confirmation, YouTube link validation and the outgoing form fields using an intercepted request. It does not send an email or verify inbox delivery.
+GitHub Pages publishes main:/docs using branch-based publishing. After editing dist/, copy the updated site files into docs/ before pushing; keep docs/.nojekyll. Custom Actions are unavailable while the GitHub account billing lock remains.
