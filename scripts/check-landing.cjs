@@ -16,17 +16,16 @@ const { chromium } = require(process.env.CUT_SHORT_PLAYWRIGHT || 'playwright');
   await page.getByRole('button',{name:'Pause motion'}).click();
   if(await page.getByRole('button',{name:'Resume motion'}).getAttribute('aria-pressed')!=='true')throw new Error('Pause failed');
   await page.getByRole('button',{name:'Resume motion'}).click();
-  await page.getByRole('link',{name:'What’s next'}).click();
-  if(!page.url().endsWith('#next'))throw new Error('Navigation failed');
+  await page.locator('.hero .button').click();
+  if(!page.url().endsWith('#submit'))throw new Error('Navigation failed');
   await page.goto('http://127.0.0.1:4173');
   await page.screenshot({path:qaDir+'/landing-'+w+'.png',fullPage:true});
-  console.log('PASS viewport '+w);
+  if(await page.locator('#submission-form button').isDisabled())throw new Error('Submit should be enabled'); console.log('PASS viewport '+w);
  }
  await page.emulateMedia({reducedMotion:'reduce'});
- const animation=await page.locator('.giant-slash').evaluate(e=>getComputedStyle(e).animationName);
+ const animation=await page.locator('.type-wall div').first().evaluate(e=>getComputedStyle(e).animationName);
  if(animation!=='none')throw new Error('Reduced motion failed');
  if(errors.length)throw new Error(errors.join('\n'));
  console.log('PASS navigation, motion toggle, reduced motion, image loading, console/network');
  await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});
-

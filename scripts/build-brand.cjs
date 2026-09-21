@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require(process.env.CUT_SHORT_SHARP || 'sharp');
 const root = path.resolve(__dirname, '..');
-const out = path.join(root,'brand');
+const out = path.join(root,'corrected');
 // Custom outlined lettering. Coordinates are independent of installed fonts.
 const glyphs = {
 C:'M70 0Q0 0 0 65V235Q0 300 70 300Q140 300 140 235V170H78V242Q78 249 71 249Q64 249 64 242V58Q64 51 71 51Q78 51 78 58V132H140V65Q140 0 70 0Z',
@@ -21,7 +21,7 @@ const descriptor = JSON.parse(fs.readFileSync(path.join(__dirname,'tagline-path.
 const tagline=(width,x,y)=>`<g transform="translate(${x} ${y}) scale(${width/descriptor.width})"><path d="${descriptor.d}" fill-rule="evenodd"/></g>`;
 const shapes={horizontal:{w:1330,h:610,body:word('CUT',0,80)+p(slash,350,0)+word('SHORT',596,80)+tagline(1000,165,500)},stacked:{w:734,h:960,body:word('CUT',0,80)+p(slash,420,0)+word('SHORT',0,500)+tagline(700,17,860)},slash:{w:247,h:460,body:p(slash)}};
 const colors={primary:{fg:'#000000',bg:'#F5FF00'},blue:{fg:'#FFFFFF',bg:'#0047FF'},pink:{fg:'#000000',bg:'#FF0099'},black:{fg:'#000000'},white:{fg:'#FFFFFF'}};
-function svg(shape,theme,pad=80){const s=shapes[shape],c=colors[theme],w=s.w+pad*2,h=s.h+pad*2;return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="CUT/SHORT${shape==='slash'?' slash symbol':' — The Ad film festival'}"><title>CUT/SHORT — The Ad film festival</title>${c.bg?`<path fill="${c.bg}" d="M0 0H${w}V${h}H0Z"/>`:''}<g fill="${c.fg}" transform="translate(${pad} ${pad})">${s.body}</g></svg>`;}
+function svg(shape,theme,pad=80){const s=shapes[shape],c=colors[theme],w=s.w+pad*2,h=s.h+pad*2;return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="CUT/SHORT${shape==='slash'?' slash symbol':' — The Ad Film Festival'}"><title>CUT/SHORT — The Ad Film Festival</title>${c.bg?`<path fill="${c.bg}" d="M0 0H${w}V${h}H0Z"/>`:''}<g fill="${c.fg}" transform="translate(${pad} ${pad})">${s.body}</g></svg>`;}
 function square(theme){const c=colors[theme];return `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>CUT/SHORT slash</title><path fill="${c.bg||'#FFFFFF'}" d="M0 0H512V512H0Z"/><g fill="${c.fg}" transform="translate(155 67) scale(.82)">${p(slash)}</g></svg>`;}
 async function main(){
 for(const d of ['svg','png','webp','icons','social'])fs.mkdirSync(path.join(out,d),{recursive:true});
@@ -47,8 +47,7 @@ for(const theme of ['primary','blue','pink']){
 const board='<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2280">'+['primary','blue','pink'].map((theme,i)=>`<path fill="${colors[theme].bg}" d="M0 ${i*760}H1600V${(i+1)*760}H0Z"/><g fill="${colors[theme].fg}" transform="translate(135 ${i*760+70})">${shapes.horizontal.body}</g>`).join('')+'</svg>';
 fs.writeFileSync(path.join(out,'preview.svg'),board);await sharp(Buffer.from(board)).png().toFile(path.join(out,'preview.png'));
 fs.writeFileSync(path.join(out,'colors.json'),JSON.stringify(colors,null,2)+'\n');
-fs.writeFileSync(path.join(out,'manifest.json'),JSON.stringify({brand:'CUT/SHORT',descriptor:'The Ad film festival',primary:'Black on electric yellow',secondary:['White on cobalt blue','Black on hot pink'],pngExports:manifest},null,2)+'\n');
+fs.writeFileSync(path.join(out,'manifest.json'),JSON.stringify({brand:'CUT/SHORT',descriptor:'The Ad Film Festival',primary:'Black on electric yellow',secondary:['White on cobalt blue','Black on hot pink'],pngExports:manifest},null,2)+'\n');
 console.log('Built logo suite in '+out);
 }
 main().catch(e=>{console.error(e);process.exit(1)});
-
