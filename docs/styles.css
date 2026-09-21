@@ -20,3 +20,5 @@ footer{display:block}
 .footer-legal a{text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
 footer :focus-visible{outline-color:var(--yellow)}
 @media(max-width:760px){.footer-top{flex-wrap:wrap}.footer-top>p{order:3;width:100%}.footer-legal{align-items:flex-start;flex-direction:column;gap:12px}.footer-legal p{margin:0}}
+.sponsors .button{margin-top:28px;font-size:.875rem}
+@media(max-width:760px){.header nav{gap:12px}.header .motion-button{margin-left:auto}.sponsors h2{font-size:clamp(2.6rem,10vw,4rem)}}
