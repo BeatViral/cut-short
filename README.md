@@ -1,10 +1,10 @@
-# CUT/SHORT brand assets
+# CUT/SHORT — The Ad film festival
 
 ![Brand colour variations](brand/preview.png)
 
 Primary: **black on electric yellow**. Secondary: **white on cobalt blue** and **black on hot pink**.
 
-The approved concept has been rebuilt as custom vector outlines. No font installation is needed. The diagonal cut on the first T leaves a visible gap beside the oversized slash.
+The approved concept has been rebuilt as custom vector outlines. No font installation is needed. The exact descriptor “The Ad film festival” is stored as outlines in `scripts/tagline-path.json`. The diagonal cut on the first T leaves a visible gap beside the oversized slash.
 
 ## Files
 
@@ -31,9 +31,9 @@ These are screen RGB masters. Have the printer proof bright colours on the inten
 
 Use yellow as the default identity. Blue and pink are secondary brand variations. Use transparent black or white over other suitable backgrounds. The slash always keeps its geometry and the logo must scale proportionally.
 
-Prefer the horizontal wordmark at 160 px wide or larger; use the standalone slash at favicon sizes. The stacked wordmark is provided for narrow placements. Check small-size legibility in the actual medium. Built-in master padding is 80 design units (about one slash stroke); preserve at least that clear space around the mark.
+Prefer the complete horizontal lockup at 320 px wide or larger so the descriptor stays readable; use the standalone slash at favicon sizes. The 160 px export is supplied for compact applications, where the descriptor will be very small. The stacked wordmark is provided for narrow placements. Check small-size legibility in the actual medium. Built-in master padding is 80 design units (about one slash stroke); preserve at least that clear space around the mark.
 
-The rounded corner and blue edge in the supplied screenshot were presentation framing, not part of the core wordmark. No tagline or festival icon is added.
+The rounded corner and blue edge in the supplied screenshot were presentation framing, not part of the core wordmark. Every horizontal and stacked logo includes “The Ad film festival” beneath CUT/SHORT as vector outlines. The standalone slash remains the small-format symbol.
 
 SVG is the resolution-independent master for websites, large posters and print layout. PNG sizes refer to total canvas width including clear space. White transparent artwork may appear blank against a white viewer background.
 
@@ -47,6 +47,6 @@ The responsive festival landing page is in `dist/`. It uses the approved logo fi
 
 Serve `dist` with any static web server. For example: `python -m http.server 4173 --directory dist`. There is no website build step and no third-party network dependency. For deployment, use `dist` as the publish directory. Pushing this repository does not itself configure hosting.
 
-The page is currently a coming-soon launch: confirmed festival dates, location and the submission destination have not been provided. Edit `dist/index.html` when those details are ready. No email addresses are collected and no submission form is implied to work.
+The landing page is for ad films, not a general short-film festival. Submissions are intended to use YouTube links; a receiving form or destination still needs to be connected. The page is currently a coming-soon launch: confirmed festival dates, location and the submission destination have not been provided. Edit `dist/index.html` when those details are ready. No email addresses are collected and no submission form is implied to work.
 
 The browser check in `scripts/check-landing.cjs` uses Playwright and installed Chrome against a running local server on port 4173. Install Playwright separately or set `CUT_SHORT_PLAYWRIGHT` to an existing module path. Screenshots are saved in ignored `.qa/`. Checks cover desktop/mobile layout, asset loading, navigation, motion controls and reduced motion.
